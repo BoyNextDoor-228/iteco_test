@@ -1,39 +1,18 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Features
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages). 
+Contains datatypes which the whole application consumes.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages). 
--->
+All features are in `src/lib`.
+For now, the following feature is only 'product'.
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+Models are made using [Freezed](https://pub.dev/packages/freezed) package.
 
-## Features
+## Adding new feature or expanding the existing one
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
-```dart
-const like = 'sample';
-```
-
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+1) Go to the desired feature directory, there you will see three files:
+    - feature_name.dart (code written manually),
+    - feature_name.g.dart (generated code),
+    - feature_name.freezed.dart (generated code).
+2) Make changes you wanted to make,
+3) Run build_runner script `dart run build_runner build` to generate new code files with applied changes,
+4) Don't forget to make sure all tests of the feature you changed are passed.
