@@ -35,6 +35,7 @@ class AppScope implements IAppScope {
   int get productPaginationSize => _productPaginationSize;
 }
 
+/// Scope of dependencies, which may be useful along application worktime.
 abstract class IAppScope {
   /// Rest api client.
   Dio get dio;

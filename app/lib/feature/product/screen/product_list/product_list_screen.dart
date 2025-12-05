@@ -8,6 +8,9 @@ import '../../../../app/widget/error_information.dart';
 import '../../widget/product_list.dart';
 import 'product_list_widget_model.dart';
 
+/// Screen, which displays list of [Product]s.
+///
+/// This class is the Widget of Elementary MWWM approach.
 class ProductListScreen
     extends ElementaryWidget<IProductListScreenWidgetModel> {
   const ProductListScreen({
@@ -16,35 +19,41 @@ class ProductListScreen
   }) : super(wmFactory, key: key);
 
   @override
-  Widget build(IProductListScreenWidgetModel wm) => Scaffold(
-        appBar: AppBar(title: const Text('Product list')),
-        drawer: const AppDrawer(),
-        body: EntityStateNotifierBuilder<List<Product>>(
-          listenableEntityState: wm.productListState,
-          loadingBuilder: (_, previousProducts) => Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: previousProducts == null
-                ? const CircularProgressIndicator()
-                : ProductList(
-                    controller: wm.controller,
-                    products: previousProducts,
-                  ),
-          ),
-          errorBuilder: (_, __, ___) => ErrorInformation(
-            errorDescription: 'Не получилось загрузить список продуктов.',
-            buttonText: 'Повторить попытку',
-            onButtonTap: () => wm.reloadProductList,
-          ),
-          builder: (_, products) => Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: RefreshIndicator(
+  Widget build(IProductListScreenWidgetModel wm) {
+    const listPadding = EdgeInsets.symmetric(horizontal: 10);
+
+    return Scaffold(
+      appBar: AppBar(title: const Text('Product list')),
+      drawer: const AppDrawer(),
+      body: EntityStateNotifierBuilder<List<Product>>(
+        listenableEntityState: wm.productListState,
+        loadingBuilder: (_, previousProducts) => Padding(
+          padding: listPadding,
+          child: previousProducts == null
+              ? const CircularProgressIndicator()
+              : ProductList(
+                  controller: wm.controller,
+                  products: previousProducts,
+                  onRefresh: wm.reloadProductList,
+                ),
+        ),
+        errorBuilder: (_, __, ___) => ErrorInformation(
+          errorDescription: 'Не получилось загрузить список продуктов.',
+          buttonText: 'Повторить попытку',
+          onButtonTap: () => wm.reloadProductList,
+        ),
+        builder: (_, products) => Padding(
+          padding: listPadding,
+          child: RefreshIndicator(
+            onRefresh: wm.reloadProductList,
+            child: ProductList(
+              controller: wm.controller,
+              products: products!,
               onRefresh: wm.reloadProductList,
-              child: ProductList(
-                controller: wm.controller,
-                products: products!,
-              ),
             ),
           ),
         ),
-      );
+      ),
+    );
+  }
 }

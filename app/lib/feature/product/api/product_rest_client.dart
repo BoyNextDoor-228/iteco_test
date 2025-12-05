@@ -8,10 +8,11 @@ part 'product_rest_client.g.dart';
 
 @RestApi()
 abstract class ProductRestClient implements ProductClient {
+  /// Rest API implementation of [ProductClient].
   factory ProductRestClient(
-      Dio dio, {
-        String baseUrl,
-      }) = _ProductRestClient;
+    Dio dio, {
+    String baseUrl,
+  }) = _ProductRestClient;
 
   @override
   @GET('/products/{productId}')

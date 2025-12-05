@@ -17,9 +17,4 @@ class HomePage extends StatelessWidget {
           child: Text('Here goes home page'),
         ),
       );
-
-// return EventScreen(
-//   wmFactory: (context) =>
-//       defaultEventScreenWidgetModelFactory(context, UuidValue(widget.id)),
-// );
 }

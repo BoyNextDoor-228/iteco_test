@@ -4,14 +4,25 @@ import 'package:flutter/material.dart';
 import 'product_list_item.dart';
 
 class ProductList extends StatelessWidget {
+  /// Creates a scrollable list, which displays [products].
+  ///
+  /// Scroll behaviour controlled by [controller].
+  /// [onRefresh] is a callback, which is called on refresh button tap.
   const ProductList({
     required this.products,
     required this.controller,
+    required this.onRefresh,
     super.key,
   });
 
+  /// [List] of [Product]s, which this widget has to display.
   final List<Product> products;
+
+  /// Controller of scrollable list.
   final ScrollController controller;
+
+  /// Callback, which is called on refresh button tap.
+  final RefreshCallback onRefresh;
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +35,10 @@ class ProductList extends StatelessWidget {
           children: [
             const Icon(Icons.mood_bad),
             const Text(
-                'Каталог продуктов пуст, возможно, он будет пополнен позже'),
+              'Каталог продуктов пуст, возможно, он будет пополнен позже',
+            ),
             OutlinedButton(
-              onPressed: () {},
+              onPressed: onRefresh,
               child: const Text('Повторить попытку'),
             ),
           ],

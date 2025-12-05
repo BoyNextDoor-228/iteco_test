@@ -10,48 +10,47 @@ class AppDrawer extends StatelessWidget {
 
   /// Items to be displayed in [Drawer]'s navigation list;
   List<DrawerNavigationItemInfo> _drawerNavigationItems() => [
-    const DrawerNavigationItemInfo(
-      itemName: 'Главная страница',
-      itemImage: Icon(Icons.home),
-      itemRoute: HomeRootRoute(),
-    ),
-    const DrawerNavigationItemInfo(
-      itemName: 'Онбординг',
-      itemImage: Icon(Icons.info),
-      itemRoute: OnboardingRoute(),
-    ),
-    const DrawerNavigationItemInfo(
-      itemName: 'Список продуктов',
-      itemImage: Icon(Icons.fastfood),
-      itemRoute: ProductRootRoute(),
-    ),
-  ];
+        const DrawerNavigationItemInfo(
+          itemName: 'Главная страница',
+          itemImage: Icon(Icons.home),
+          itemRoute: HomeRootRoute(),
+        ),
+        const DrawerNavigationItemInfo(
+          itemName: 'Онбординг',
+          itemImage: Icon(Icons.info),
+          itemRoute: OnboardingRoute(),
+        ),
+        const DrawerNavigationItemInfo(
+          itemName: 'Список продуктов',
+          itemImage: Icon(Icons.fastfood),
+          itemRoute: ProductRootRoute(),
+        ),
+      ];
 
   @override
   Widget build(BuildContext context) => Drawer(
-      child: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              physics: const BouncingScrollPhysics(),
-              itemCount: _drawerNavigationItems().length,
-              itemBuilder: (context, index) => DrawerNavigationItem(
-                info: _drawerNavigationItems()[index],
-                isSelected: context.router.current.parent?.name ==
-                    _drawerNavigationItems()[index].itemRoute.routeName,
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView.builder(
+                physics: const BouncingScrollPhysics(),
+                itemCount: _drawerNavigationItems().length,
+                itemBuilder: (context, index) => DrawerNavigationItem(
+                  info: _drawerNavigationItems()[index],
+                  isSelected: context.router.current.parent?.name ==
+                      _drawerNavigationItems()[index].itemRoute.routeName,
+                ),
               ),
             ),
-          ),
-          const Divider(),
-          ListTile(
-            title: const Text('Выход'),
-            leading: const Icon(Icons.close),
-            onTap: _closeApplication,
-          ),
-        ],
-      ),
-    );
-
+            const Divider(),
+            ListTile(
+              title: const Text('Выход'),
+              leading: const Icon(Icons.close),
+              onTap: _closeApplication,
+            ),
+          ],
+        ),
+      );
 
   Future<void> _closeApplication() async =>
       SystemChannels.platform.invokeMethod('SystemNavigator.pop');
@@ -87,7 +86,10 @@ class DrawerNavigationItem extends StatelessWidget {
     super.key,
   });
 
+  /// Full information about current [Drawer] item.
   final DrawerNavigationItemInfo info;
+
+  /// If current [Drawer] is the selected one among other items.
   final bool isSelected;
 
   @override

@@ -15,9 +15,4 @@ class OnboardingPage extends StatelessWidget {
           child: Text('Here goes onboarding page'),
         ),
       );
-
-// return EventScreen(
-//   wmFactory: (context) =>
-//       defaultEventScreenWidgetModelFactory(context, UuidValue(widget.id)),
-// );
 }

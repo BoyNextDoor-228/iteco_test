@@ -2,6 +2,9 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 
 class ProductListItem extends StatelessWidget {
+  /// Displays a single [product] item in products list.
+  ///
+  /// [itemSize] is a size of item.
   const ProductListItem({
     required this.product,
     required this.itemSize,

@@ -6,19 +6,36 @@ import 'package:elementary_helper/elementary_helper.dart';
 
 import '../../api/product_client.dart';
 
+/// This class is the Model of Elementary MWWM approach.
 class ProductListScreenModel extends ElementaryModel {
+  /// Creates a Model for ProductListScreen.
+  ///
+  /// [client] is a Client, which is responsible for getting [Product] related
+  /// data.
   ProductListScreenModel({required ProductClient client, super.errorHandler})
       : _client = client;
 
+  /// A client, which can get [Product] related data.
   final ProductClient _client;
 
+  /// As FakeStoreAPI doesn't provide 'offset' query-parameter for
+  /// pagination, I have to receive all available products and then simulate
+  /// a pagination.
+  /// To do so, I receive all products, which API has ([_allReceivedProducts]),
+  /// and manually divide it into pieces, so that each piece is a piece,
+  /// which would be sent by API, if it had 'offset' parameter.
   List<Product> _allReceivedProducts = [];
+
+  /// List of products, which are currently received, using fake pagination.
   List<Product> _paginatedProducts = [];
 
+  /// Determines, if there are no products to get left.
   late bool _hasMoreProducts;
 
+  /// Public getter of [_hasMoreProducts].
   bool get hasMoreProducts => _hasMoreProducts;
 
+  /// Notifier, which is used as state of product list.
   final productList = EntityStateNotifier<List<Product>>();
 
   @override
@@ -26,16 +43,19 @@ class ProductListScreenModel extends ElementaryModel {
     unawaited(loadProductList(reload: true));
   }
 
+  /// Loads products and updates state.
+  ///
+  /// If data is going to be loaded for the first time, pass true [reload].
+  /// Same for reloading list.
+  ///
+  /// [offset] is imitation of a real 'offset' query parameter.
   Future<void> loadProductList({bool reload = false, int offset = 3}) async {
+    // If it's reload or first loading, no previous data exist, else
+    // loading state has to know, what data there was before this state happend.
     productList.loading(reload ? null : _paginatedProducts);
 
     try {
-      // As FakeStoreAPI doesn't provide 'offset' query-parameter for
-      // pagination, I have to simulate a pagination.
-      // To do so, I receive all data, which API sends, and manually divide it
-      // into pieces, so that each piece is a piece, which would be sent by API,
-      // if it had 'offset' parameter.
-
+      // If it's reload or first loading
       if (reload) {
         _hasMoreProducts = true;
         // First, I get whe whole products list from API.
