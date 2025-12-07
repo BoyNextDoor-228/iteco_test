@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'app/theme.dart';
 import 'di/app_scope.dart';
 
 class ItecoTestApp extends StatefulWidget {
@@ -47,6 +48,8 @@ class _ItecoTestAppState extends State<ItecoTestApp> {
             child: MaterialApp.router(
               title: _appScope.appName,
               routerConfig: _appScope.router.config(),
+              theme: lightTheme,
+              darkTheme: darkTheme,
             ),
           );
         },

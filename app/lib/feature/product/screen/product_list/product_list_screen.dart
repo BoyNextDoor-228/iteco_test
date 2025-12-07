@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../../../../app/widget/drawer.dart';
 import '../../../../app/widget/error_information.dart';
 import '../../widget/product_list.dart';
+import '../../widget/product_list_loading.dart';
 import 'product_list_widget_model.dart';
 
 /// Screen, which displays list of [Product]s.
@@ -23,14 +24,14 @@ class ProductListScreen
     const listPadding = EdgeInsets.symmetric(horizontal: 10);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Product list')),
+      appBar: AppBar(title: Text(wm.appName)),
       drawer: const AppDrawer(),
       body: EntityStateNotifierBuilder<List<Product>>(
         listenableEntityState: wm.productListState,
         loadingBuilder: (_, previousProducts) => Padding(
           padding: listPadding,
           child: previousProducts == null
-              ? const CircularProgressIndicator()
+              ? ProductListLoading.static(itemSize: wm.listItemSize)
               : ProductList(
                   controller: wm.controller,
                   products: previousProducts,

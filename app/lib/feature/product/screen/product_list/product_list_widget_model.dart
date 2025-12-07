@@ -72,7 +72,14 @@ class ProductListScreenWidgetModel
   double get listItemSize => MediaQuery.sizeOf(context).width;
 
   @override
-  Future<void> reloadProductList() => model.loadProductList(reload: true);
+  Future<void> reloadProductList() async {
+    _currentScrollOffset = 0;
+    // When state changes, a different products list shows up, so I have to
+    // keep scroll position updated.
+    _updateController();
+
+    await model.loadProductList(reload: true);
+  }
 
   /// Triggers loading of more products, when bottom of products list is reached.
   ///
@@ -126,6 +133,9 @@ class ProductListScreenWidgetModel
     _controller = ScrollController(initialScrollOffset: _currentScrollOffset);
     _controller.addListener(_loadProductsWhenOnBottom);
   }
+
+  @override
+  String get appName => context.read<IAppScope>().appName;
 }
 
 abstract class IProductListScreenWidgetModel implements IWidgetModel {
@@ -140,4 +150,7 @@ abstract class IProductListScreenWidgetModel implements IWidgetModel {
 
   /// Scroll controller for scrollable products list.
   ScrollController get controller;
+
+  /// Name of application.
+  String get appName;
 }

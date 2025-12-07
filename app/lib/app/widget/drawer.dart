@@ -18,7 +18,7 @@ class AppDrawer extends StatelessWidget {
         const DrawerNavigationItemInfo(
           itemName: 'Онбординг',
           itemImage: Icon(Icons.info),
-          itemRoute: OnboardingRoute(),
+          itemRoute: OnboardingRootRoute(),
         ),
         const DrawerNavigationItemInfo(
           itemName: 'Список продуктов',

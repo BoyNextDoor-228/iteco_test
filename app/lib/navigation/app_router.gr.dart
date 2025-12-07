@@ -59,6 +59,22 @@ class OnboardingRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [OnboardingRootPage]
+class OnboardingRootRoute extends PageRouteInfo<void> {
+  const OnboardingRootRoute({List<PageRouteInfo>? children})
+      : super(OnboardingRootRoute.name, initialChildren: children);
+
+  static const String name = 'OnboardingRootRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const OnboardingRootPage();
+    },
+  );
+}
+
+/// generated route for
 /// [ProductListPage]
 class ProductListRoute extends PageRouteInfo<void> {
   const ProductListRoute({List<PageRouteInfo>? children})
