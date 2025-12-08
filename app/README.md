@@ -10,7 +10,7 @@ ItecoTestApp is a mobile application, which was made as a test task.
 ### Onboarding first subpage
 
 <img src="app_image/2.png" alt="drawing" width="300"/>
-<img src="app_image/2.png" alt="drawing" width="300"/>
+<img src="app_image/2d.png" alt="drawing" width="300"/>
 
 ### Onboarding second subpage
 
