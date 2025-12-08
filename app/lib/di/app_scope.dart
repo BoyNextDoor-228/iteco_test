@@ -1,13 +1,19 @@
 import 'package:dio/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../config/environment.dart';
 import '../navigation/app_router.dart';
+import '../navigation/route_guard/app_first_launch_guard.dart';
+import '../service/shared_preferences_storage.dart';
 
 class AppScope implements IAppScope {
   late final String _appName;
   late final Dio _dio;
   late final AppRouter _router;
   late final int _productPaginationSize;
+
+  /// Storage of dynamic application data;
+  late final AbstractAppDataStorage _appDataStorage;
 
   @override
   String get appName => _appName;
@@ -17,13 +23,29 @@ class AppScope implements IAppScope {
 
   @override
   Future<void> init() async {
+    _appDataStorage = SharedPreferencesAppDataStorage(
+      sharedPreferences: await SharedPreferences.getInstance(),
+    );
     _appName = Environment.instance.applicationName;
     _dio = Dio(
       BaseOptions(
         baseUrl: Environment.instance.appConfig.serverUrl,
       ),
     );
-    _router = AppRouter();
+
+    var isFirstLaunch = await _appDataStorage
+        .isFirstLaunch(Environment.instance.appConfig.isFirstLaunchKey);
+    if (isFirstLaunch == null || isFirstLaunch) {
+      await _appDataStorage.setIsFirstLaunch(
+        Environment.instance.appConfig.isFirstLaunchKey,
+        false,
+      );
+      isFirstLaunch = true; // If isFirstLaunch was null
+    }
+
+    _router = AppRouter(
+      appFirstLaunchGuard: AppFirstLaunchGuard(isFirstLaunch: isFirstLaunch),
+    );
     _productPaginationSize =
         Environment.instance.appConfig.productPaginationSize;
   }

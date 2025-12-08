@@ -21,6 +21,7 @@ dependencies:
   logger: ^2.6.0
   provider: ^6.1.5+1
   retrofit: ^4.9.0
+  shared_preferences: ^2.5.3
 
 dev_dependencies:
   auto_route_generator: ^10.4.0

@@ -1,41 +1,38 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../feature/home/home_page.dart';
 import '../feature/home/home_root_page.dart';
 import '../feature/onboarding/page/onboarding_page.dart';
-import '../feature/onboarding/page/onboarding_root_page.dart';
 import '../feature/product/page/product_list_page.dart';
 import '../feature/product/page/product_root_page.dart';
 import '../feature/root/root_page.dart';
+import 'route_guard/app_first_launch_guard.dart';
 import 'route_path.dart';
 
 part 'app_router.gr.dart';
 
 @AutoRouterConfig()
 class AppRouter extends RootStackRouter {
+  AppRouter({required this.appFirstLaunchGuard});
+
+  final AppFirstLaunchGuard appFirstLaunchGuard;
+
   @override
   List<AutoRoute> get routes => [
         AutoRoute(
+          path: RoutePath.onboarding,
+          page: OnboardingRoute.page,
+        ),
+        // =====================================================================
+        AutoRoute(
           path: RoutePath.root,
           page: RootRoute.page,
+          guards: [appFirstLaunchGuard],
           children: [
             RedirectRoute(
               path: '',
-              redirectTo: RoutePath.onboarding,
-            ),
-            AutoRoute(
-              path: RoutePath.onboarding,
-              page: OnboardingRootRoute.page,
-              children: [
-                RedirectRoute(
-                  path: '',
-                  redirectTo: RoutePath.onboarding,
-                ),
-                AutoRoute(
-                  path: RoutePath.onboarding,
-                  page: OnboardingRoute.page,
-                ),
-              ],
+              redirectTo: RoutePath.home,
             ),
             // ==============================
             AutoRoute(

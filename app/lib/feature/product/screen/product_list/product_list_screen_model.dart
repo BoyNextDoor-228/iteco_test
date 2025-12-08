@@ -4,19 +4,19 @@ import 'package:domain/domain.dart';
 import 'package:elementary/elementary.dart';
 import 'package:elementary_helper/elementary_helper.dart';
 
-import '../../api/product_client.dart';
-
 /// This class is the Model of Elementary MWWM approach.
 class ProductListScreenModel extends ElementaryModel {
   /// Creates a Model for ProductListScreen.
   ///
   /// [client] is a Client, which is responsible for getting [Product] related
   /// data.
-  ProductListScreenModel({required ProductClient client, super.errorHandler})
-      : _client = client;
+  ProductListScreenModel({
+    required AbstractProductClient client,
+    super.errorHandler,
+  }) : _client = client;
 
   /// A client, which can get [Product] related data.
-  final ProductClient _client;
+  final AbstractProductClient _client;
 
   /// As FakeStoreAPI doesn't provide 'offset' query-parameter for
   /// pagination, I have to receive all available products and then simulate
@@ -45,13 +45,13 @@ class ProductListScreenModel extends ElementaryModel {
 
   /// Loads products and updates state.
   ///
-  /// If data is going to be loaded for the first time, pass true [reload].
-  /// Same for reloading list.
+  /// If data is going to be loaded for the first time, pass true in [reload].
+  /// Same if you're going to reload list.
   ///
   /// [offset] is imitation of a real 'offset' query parameter.
   Future<void> loadProductList({bool reload = false, int offset = 3}) async {
-    // If it's reload or first loading, no previous data exist, else
-    // loading state has to know, what data there was before this state happend.
+    // If it's reload or first loading, no previous data exists, else
+    // loading state has to know, what data there was before this state happened.
     productList.loading(reload ? null : _paginatedProducts);
 
     try {

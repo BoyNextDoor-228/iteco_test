@@ -1,7 +1,5 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
-import '../../../navigation/app_router.dart';
 import '../text/informational_subpage_text.dart';
 import '../widget/onboarding_subpage/informational_subpage.dart';
 import '../widget/onboarding_subpage/lets_start_subpage.dart';
@@ -10,7 +8,16 @@ import '../widget/pageview_control_button.dart';
 
 class OnboardingScreen extends StatefulWidget {
   /// Screen to be shown on very first application run.
-  const OnboardingScreen({super.key});
+  const OnboardingScreen({
+    required this.onOnboardingPassed,
+    super.key,
+  });
+
+  /// Creates a widget, which is used to let IRL user set his initial weight.
+  ///
+  /// [onOnboardingPassed] is a callback, which is called, when user passes
+  /// onboarding.
+  final VoidCallback onOnboardingPassed;
 
   @override
   State<OnboardingScreen> createState() => _OnboardingScreenState();
@@ -40,11 +47,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         _currentPageIndex = newIndex;
       });
 
-  Future<void> _goToHomePage() async {
-    context.router.popUntilRoot();
-    await context.router.replace(const HomeRootRoute());
-  }
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -70,7 +72,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       ),
       const ProductListDemoSubpage(),
       LetsStartSubpage(
-        onButtonTap: () async => _goToHomePage(),
+        onButtonTap: widget.onOnboardingPassed,
       ),
     ];
   }

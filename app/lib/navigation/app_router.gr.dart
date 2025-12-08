@@ -44,34 +44,55 @@ class HomeRootRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [OnboardingPage]
-class OnboardingRoute extends PageRouteInfo<void> {
-  const OnboardingRoute({List<PageRouteInfo>? children})
-      : super(OnboardingRoute.name, initialChildren: children);
+class OnboardingRoute extends PageRouteInfo<OnboardingRouteArgs> {
+  OnboardingRoute({
+    required VoidCallback onOnboardingPassed,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          OnboardingRoute.name,
+          args: OnboardingRouteArgs(
+            onOnboardingPassed: onOnboardingPassed,
+            key: key,
+          ),
+          initialChildren: children,
+        );
 
   static const String name = 'OnboardingRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const OnboardingPage();
+      final args = data.argsAs<OnboardingRouteArgs>();
+      return OnboardingPage(
+        onOnboardingPassed: args.onOnboardingPassed,
+        key: args.key,
+      );
     },
   );
 }
 
-/// generated route for
-/// [OnboardingRootPage]
-class OnboardingRootRoute extends PageRouteInfo<void> {
-  const OnboardingRootRoute({List<PageRouteInfo>? children})
-      : super(OnboardingRootRoute.name, initialChildren: children);
+class OnboardingRouteArgs {
+  const OnboardingRouteArgs({required this.onOnboardingPassed, this.key});
 
-  static const String name = 'OnboardingRootRoute';
+  final VoidCallback onOnboardingPassed;
 
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return const OnboardingRootPage();
-    },
-  );
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'OnboardingRouteArgs{onOnboardingPassed: $onOnboardingPassed, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! OnboardingRouteArgs) return false;
+    return onOnboardingPassed == other.onOnboardingPassed && key == other.key;
+  }
+
+  @override
+  int get hashCode => onOnboardingPassed.hashCode ^ key.hashCode;
 }
 
 /// generated route for
