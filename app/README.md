@@ -69,6 +69,12 @@ MVVM approach was used on products feature only, coz other screens, such as onbo
 don't have any business logic, so there is no point to split code in separate files.
 Despite that, I tried to keep their code clean.
 
+## NOTICE!!!
+As FakeStoreAPI doesn't provide 'offset' query-parameter for pagination, I have to receive all
+available products and then simulate a pagination.
+To do so, I receive all products, which API has, and manually divide it into pieces, so that
+each piece is a piece, which would be sent by API, if it had 'offset' parameter.
+
 ## Used packages
 - [Auto_route](https://pub.dev/packages/auto_route) for routing.
 - [Dio](https://pub.dev/packages/dio) + [Retrofit](https://pub.dev/packages/retrofit) for Rest Api.
