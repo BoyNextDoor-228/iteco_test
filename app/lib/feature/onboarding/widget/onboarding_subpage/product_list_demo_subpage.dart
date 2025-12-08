@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../generated/l10n.dart';
 import '../../../product/widget/product_list_loading.dart';
 
 class ProductListDemoSubpage extends StatelessWidget {
@@ -10,12 +11,13 @@ class ProductListDemoSubpage extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final productListItemSize = MediaQuery.sizeOf(context).width;
+    final text = S.of(context);
 
     return Column(
       spacing: 30,
       children: [
         Text(
-          'Бесконечный скролл продуктов!',
+          text.product_list_demo_subpage_title,
           style: textTheme.displaySmall,
           maxLines: 2,
           overflow: TextOverflow.ellipsis,

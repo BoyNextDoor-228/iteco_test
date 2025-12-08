@@ -50,6 +50,9 @@ class _ItecoTestAppState extends State<ItecoTestApp> {
               routerConfig: _appScope.router.config(),
               theme: lightTheme,
               darkTheme: darkTheme,
+              localizationsDelegates: _appScope.localizationsDelegates,
+              supportedLocales: _appScope.supportedLocales,
+              //locale: const Locale('en'),
             ),
           );
         },

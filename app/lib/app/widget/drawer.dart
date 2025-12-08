@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../generated/l10n.dart';
 import '../../navigation/app_router.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -9,43 +10,47 @@ class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
 
   /// Items to be displayed in [Drawer]'s navigation list;
-  List<DrawerNavigationItemInfo> _drawerNavigationItems() => [
-        const DrawerNavigationItemInfo(
-          itemName: 'Главная страница',
-          itemImage: Icon(Icons.home),
-          itemRoute: HomeRootRoute(),
+  List<DrawerNavigationItemInfo> _drawerNavigationItems(S text) => [
+        DrawerNavigationItemInfo(
+          itemName: text.main_page,
+          itemImage: const Icon(Icons.home),
+          itemRoute: const HomeRootRoute(),
         ),
-        const DrawerNavigationItemInfo(
-          itemName: 'Список продуктов',
-          itemImage: Icon(Icons.fastfood),
-          itemRoute: ProductRootRoute(),
+        DrawerNavigationItemInfo(
+          itemName: text.products_list,
+          itemImage: const Icon(Icons.fastfood),
+          itemRoute: const ProductRootRoute(),
         ),
       ];
 
   @override
-  Widget build(BuildContext context) => Drawer(
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                physics: const BouncingScrollPhysics(),
-                itemCount: _drawerNavigationItems().length,
-                itemBuilder: (context, index) => DrawerNavigationItem(
-                  info: _drawerNavigationItems()[index],
-                  isSelected: context.router.current.parent?.name ==
-                      _drawerNavigationItems()[index].itemRoute.routeName,
-                ),
+  Widget build(BuildContext context) {
+    final text = S.of(context);
+
+    return Drawer(
+      child: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              physics: const BouncingScrollPhysics(),
+              itemCount: _drawerNavigationItems(text).length,
+              itemBuilder: (context, index) => DrawerNavigationItem(
+                info: _drawerNavigationItems(text)[index],
+                isSelected: context.router.current.parent?.name ==
+                    _drawerNavigationItems(text)[index].itemRoute.routeName,
               ),
             ),
-            const Divider(),
-            ListTile(
-              title: const Text('Выход'),
-              leading: const Icon(Icons.close),
-              onTap: _closeApplication,
-            ),
-          ],
-        ),
-      );
+          ),
+          const Divider(),
+          ListTile(
+            title: Text(text.quit),
+            leading: const Icon(Icons.close),
+            onTap: _closeApplication,
+          ),
+        ],
+      ),
+    );
+  }
 
   Future<void> _closeApplication() async =>
       SystemChannels.platform.invokeMethod('SystemNavigator.pop');

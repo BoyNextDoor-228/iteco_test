@@ -1,0 +1,21 @@
+{
+  "main_page": "Main page",
+  "products_list": "Products list",
+  "quit": "Quit",
+  "home_screen_info_text": "Here goes the main page, which ws made for nothing.\n\nIf you're looking for a page with products list, you probably should look for it in burger menu.\n\nYou can also look at this application with device dark theme turned on",
+  "greeting_subpage_title": "Hello!",
+  "splash_subpage_title": "SPLASH!",
+  "page_control_button_back": "Back",
+  "page_control_button_forward": "Next",
+  "lets_start_subpage_title": "Let's roll!",
+  "lets_start_subpage_button_text": "Go to application!",
+  "product_list_demo_subpage_title": "Infinite products scroll!",
+  "greeting_subpage_information": "You're on onborading page, which is required by technical task!\nThis page will be shown once, on application launched for the very first time!\nHave a nice watching!",
+  "splash_subpage_information": "On application launch you could have noticed Splash-screen - it's presence was required by technical task.\nIt was implemented using flutter_splash_screen package.",
+  "lets_start_subpage_information": "It was an onboarding of the test application!",
+  "product_list_loading_error": "Failed to load products list.",
+  "product_list_retry_button_text": "Retry",
+  "product_list_absence_text": "Products catalogue is empty, maybe, it will be filled later",
+  "empty_product_list_reload_button_text": "Retry",
+  "feedbacksAmount": "Feedbacks count: {ratingCount}"
+}

@@ -39,9 +39,9 @@ class ProductListScreen
                 ),
         ),
         errorBuilder: (_, __, ___) => ErrorInformation(
-          errorDescription: 'Не получилось загрузить список продуктов.',
-          buttonText: 'Повторить попытку',
-          onButtonTap: () => wm.reloadProductList,
+          errorDescription: wm.text.product_list_loading_error,
+          buttonText: wm.text.product_list_retry_button_text,
+          onButtonTap: wm.reloadProductList,
         ),
         builder: (_, products) => Padding(
           padding: listPadding,

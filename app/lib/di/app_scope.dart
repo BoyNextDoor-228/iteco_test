@@ -1,7 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../config/environment.dart';
+import '../generated/l10n.dart';
 import '../navigation/app_router.dart';
 import '../navigation/route_guard/app_first_launch_guard.dart';
 import '../service/shared_preferences_storage.dart';
@@ -55,6 +58,18 @@ class AppScope implements IAppScope {
 
   @override
   int get productPaginationSize => _productPaginationSize;
+
+  @override
+  List<LocalizationsDelegate> get localizationsDelegates =>
+      const <LocalizationsDelegate<dynamic>>[
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ];
+
+  @override
+  List<Locale> get supportedLocales => S.delegate.supportedLocales;
 }
 
 /// Scope of dependencies, which may be useful along application worktime.
@@ -70,6 +85,12 @@ abstract class IAppScope {
 
   /// Size of portion of products for pagination.
   int get productPaginationSize;
+
+  /// Localizations delegates.
+  List<LocalizationsDelegate<dynamic>> get localizationsDelegates;
+
+  /// Application's supported locales.
+  List<Locale> get supportedLocales;
 
   /// Initialization procedure.
   Future<void> init();

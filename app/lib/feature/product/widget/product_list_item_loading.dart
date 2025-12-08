@@ -87,48 +87,51 @@ class _ProductListItemLoadingState extends State<ProductListItemLoading>
                 ),
               ),
               Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    _LoadingContainer(
-                      height: titleFontSize,
-                      width: widget.itemSize * 0.9,
-                      color: loadingDataColor.withValues(
-                        alpha: _loadingColorOpacity.value,
-                      ),
-                    ),
-                    _LoadingContainer(
-                      height: descriptionFontSize * 3,
-                      // 3 lines of description
-                      width: widget.itemSize * 0.9,
-                      color: loadingDataColor.withValues(
-                        alpha: _loadingColorOpacity.value,
-                      ),
-                    ),
-                    const Divider(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        _LoadingRating(
-                          rateFontSize: rateFontSize,
-                          rateCountFontSize: rateCountFontSize,
-                          containerWidth: widget.itemSize * 0.1,
-                          containerColor: loadingDataColor.withValues(
-                            alpha: _loadingColorOpacity.value,
-                          ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      _LoadingContainer(
+                        height: titleFontSize,
+                        width: widget.itemSize * 0.9,
+                        color: loadingDataColor.withValues(
+                          alpha: _loadingColorOpacity.value,
                         ),
-                        Flexible(
-                          child: _LoadingContainer(
-                            height: priceFontSize,
-                            width: widget.itemSize * 0.4,
-                            color: loadingDataColor.withValues(
+                      ),
+                      _LoadingContainer(
+                        height: descriptionFontSize * 3,
+                        // 3 lines of description
+                        width: widget.itemSize * 0.9,
+                        color: loadingDataColor.withValues(
+                          alpha: _loadingColorOpacity.value,
+                        ),
+                      ),
+                      const Divider(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          _LoadingRating(
+                            rateFontSize: rateFontSize,
+                            rateCountFontSize: rateCountFontSize,
+                            containerWidth: widget.itemSize * 0.1,
+                            containerColor: loadingDataColor.withValues(
                               alpha: _loadingColorOpacity.value,
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                          Flexible(
+                            child: _LoadingContainer(
+                              height: priceFontSize,
+                              width: widget.itemSize * 0.4,
+                              color: loadingDataColor.withValues(
+                                alpha: _loadingColorOpacity.value,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],

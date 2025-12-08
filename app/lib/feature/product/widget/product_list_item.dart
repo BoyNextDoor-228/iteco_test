@@ -1,6 +1,8 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 
+import '../../../generated/l10n.dart';
+
 class ProductListItem extends StatelessWidget {
   /// Displays a single [product] item in products list.
   ///
@@ -102,6 +104,8 @@ class _Rating extends StatelessWidget {
     final rateStyle = textStyle.titleSmall;
     final rateCountStyle = textStyle.titleSmall;
 
+    final text = S.of(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -115,7 +119,7 @@ class _Rating extends StatelessWidget {
           ],
         ),
         Text(
-          'Кол-во отзывов: ${rating.count}',
+          text.feedbacksAmount(rating.count),
           style: rateCountStyle,
         ),
       ],

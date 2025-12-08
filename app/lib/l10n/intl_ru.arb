@@ -1,0 +1,21 @@
+{
+  "main_page": "Главная страница",
+  "products_list": "Список продуктов",
+  "quit": "Выход",
+  "home_screen_info_text": "Тут находится домашняя страница, которая была сделана просто так.\n\nЕсли ищите страницу со списком продуктов, то, возможно, Вам стоит заглянуть в бургер-меню.\n\nА ещё можно посмотреть на приложение, если включить на устройстве тёмный режим",
+  "greeting_subpage_title": "Привет!",
+  "splash_subpage_title": "SPLASH!",
+  "page_control_button_back": "Назад",
+  "page_control_button_forward": "Далее",
+  "lets_start_subpage_title": "Поехали!",
+  "lets_start_subpage_button_text": "Отправиться в приложение!",
+  "product_list_demo_subpage_title": "Бесконечный скролл продуктов!",
+  "greeting_subpage_information": "Вы попали на страницу онбординга, требуемую техническим заданием!\nЭта страница будет демонстрироваться единожды при первом запуске приложения!\nПриятного просмотра!",
+  "splash_subpage_information": "При запуске приложения Вы могли заметить Splash-screen - его наличие требовалось техническим заданием.\nРеализован он с помощью пакета flutter_splash_screen.",
+  "lets_start_subpage_information": "Это был онбординг тестового приложения!",
+  "product_list_loading_error": "Не получилось загрузить список продуктов.",
+  "product_list_retry_button_text": "Повторить попытку",
+  "product_list_absence_text": "Каталог продуктов пуст, возможно, он будет пополнен позже",
+  "empty_product_list_reload_button_text": "Повторить попытку",
+  "feedbacksAmount": "Кол-во отзывов: {ratingCount}"
+}

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../di/app_scope.dart';
+import '../../../../generated/l10n.dart';
 import '../../api/product_rest_client.dart';
 import 'product_list_screen.dart';
 import 'product_list_screen_model.dart';
@@ -136,6 +137,9 @@ class ProductListScreenWidgetModel
 
   @override
   String get appName => context.read<IAppScope>().appName;
+
+  @override
+  S get text => S.of(context);
 }
 
 abstract class IProductListScreenWidgetModel implements IWidgetModel {
@@ -153,4 +157,7 @@ abstract class IProductListScreenWidgetModel implements IWidgetModel {
 
   /// Name of application.
   String get appName;
+
+  /// Localization service.
+  S get text;
 }

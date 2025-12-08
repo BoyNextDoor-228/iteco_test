@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../../app/widget/drawer.dart';
 import '../../../di/app_scope.dart';
+import '../../../generated/l10n.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -12,6 +13,7 @@ class HomeScreen extends StatelessWidget {
     final appName = context.read<IAppScope>().appName;
 
     final textStyle = Theme.of(context).textTheme.headlineSmall;
+    final text = S.of(context);
 
     return Scaffold(
       appBar: AppBar(title: Text(appName)),
@@ -31,11 +33,7 @@ class HomeScreen extends StatelessWidget {
               child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 child: Text(
-                  'Тут находится домашняя страница, которая была сделана просто так.'
-                  '\n\n'
-                  'Если ищите страницу со списком продуктов, то, возможно, Вам стоит заглянуть в бургер-меню.'
-                  '\n\n'
-                  'А ещё можно посмотреть на приложение, если включить на устройстве тёмный режим',
+                  text.home_screen_info_text,
                   style: textStyle,
                   textAlign: TextAlign.center,
                 ),

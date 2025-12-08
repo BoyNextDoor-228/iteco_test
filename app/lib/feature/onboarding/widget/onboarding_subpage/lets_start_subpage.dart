@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../text/informational_subpage_text.dart';
+import '../../../../generated/l10n.dart';
 import 'informational_subpage.dart';
 
 class LetsStartSubpage extends StatelessWidget {
@@ -14,23 +14,28 @@ class LetsStartSubpage extends StatelessWidget {
   final VoidCallback onButtonTap;
 
   @override
-  Widget build(BuildContext context) => Column(
-        children: [
-          Expanded(
-            child: InformationalSubpage(
-              icon: Icon(
-                Icons.rocket_launch,
-                size: 200,
-                color: Theme.of(context).colorScheme.primary,
-              ),
-              titleText: 'Поехали!',
-              informationText: letsStartText,
+  Widget build(BuildContext context) {
+    final text = S.of(context);
+    final iconColor = Theme.of(context).colorScheme.primary;
+
+    return Column(
+      children: [
+        Expanded(
+          child: InformationalSubpage(
+            icon: Icon(
+              Icons.rocket_launch,
+              size: 200,
+              color: iconColor,
             ),
+            titleText: text.lets_start_subpage_title,
+            informationText: text.lets_start_subpage_information,
           ),
-          FilledButton(
-            onPressed: onButtonTap,
-            child: const Text('Отправиться в приложение!'),
-          ),
-        ],
-      );
+        ),
+        FilledButton(
+          onPressed: onButtonTap,
+          child: Text(text.lets_start_subpage_button_text),
+        ),
+      ],
+    );
+  }
 }

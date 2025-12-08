@@ -1,6 +1,7 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 
+import '../../../generated/l10n.dart';
 import 'product_list_item.dart';
 
 class ProductList extends StatelessWidget {
@@ -27,6 +28,7 @@ class ProductList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final itemSize = MediaQuery.sizeOf(context).width;
+    final text = S.of(context);
 
     if (products.isEmpty) {
       return Center(
@@ -34,12 +36,12 @@ class ProductList extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Icon(Icons.mood_bad),
-            const Text(
-              'Каталог продуктов пуст, возможно, он будет пополнен позже',
+            Text(
+              text.product_list_absence_text,
             ),
             OutlinedButton(
               onPressed: onRefresh,
-              child: const Text('Повторить попытку'),
+              child: Text(text.empty_product_list_reload_button_text),
             ),
           ],
         ),

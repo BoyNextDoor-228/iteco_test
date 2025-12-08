@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../text/informational_subpage_text.dart';
+import '../../../generated/l10n.dart';
 import '../widget/onboarding_subpage/informational_subpage.dart';
 import '../widget/onboarding_subpage/lets_start_subpage.dart';
 import '../widget/onboarding_subpage/product_list_demo_subpage.dart';
@@ -54,24 +54,27 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
+    final text = S.of(context);
+    final iconColor = Theme.of(context).colorScheme.primary;
+
     _subpages = [
       InformationalSubpage(
         icon: Icon(
           Icons.waving_hand,
           size: 200,
-          color: Theme.of(context).colorScheme.primary,
+          color: iconColor,
         ),
-        titleText: 'Привет!',
-        informationText: greetingText,
+        titleText: text.greeting_subpage_title,
+        informationText: text.greeting_subpage_information,
       ),
       InformationalSubpage(
         icon: Icon(
           Icons.done,
           size: 200,
-          color: Theme.of(context).colorScheme.primary,
+          color: iconColor,
         ),
-        titleText: 'SPLASH!',
-        informationText: splashScreenText,
+        titleText: text.splash_subpage_title,
+        informationText: text.splash_subpage_information,
       ),
       const ProductListDemoSubpage(),
       LetsStartSubpage(
@@ -81,47 +84,51 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
-          child: Column(
-            children: [
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    PageViewControlButton(
-                      caption: 'Назад',
-                      icon: const Icon(
-                        Icons.arrow_back_ios_new,
-                        size: 30,
-                      ),
-                      onTap: _maybeGoToPreviousPage(),
+  Widget build(BuildContext context) {
+    final text = S.of(context);
+
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
+        child: Column(
+          children: [
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  PageViewControlButton(
+                    caption: text.page_control_button_back,
+                    icon: const Icon(
+                      Icons.arrow_back_ios_new,
+                      size: 30,
                     ),
-                    PageViewControlButton(
-                      caption: 'Далее',
-                      icon: const Icon(
-                        Icons.arrow_forward_ios,
-                        size: 30,
-                      ),
-                      onTap: _maybeGoToNextPage(),
+                    onTap: _maybeGoToPreviousPage(),
+                  ),
+                  PageViewControlButton(
+                    caption: text.page_control_button_forward,
+                    icon: const Icon(
+                      Icons.arrow_forward_ios,
+                      size: 30,
                     ),
-                  ],
-                ),
+                    onTap: _maybeGoToNextPage(),
+                  ),
+                ],
               ),
-              Flexible(
-                flex: 8,
-                child: PageView(
-                  physics: const BouncingScrollPhysics(),
-                  controller: _pageViewController,
-                  onPageChanged: _setPageCurrentIndex,
-                  children: _subpages,
-                ),
+            ),
+            Flexible(
+              flex: 8,
+              child: PageView(
+                physics: const BouncingScrollPhysics(),
+                controller: _pageViewController,
+                onPageChanged: _setPageCurrentIndex,
+                children: _subpages,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-      );
+      ),
+    );
+  }
 
   VoidCallback? _maybeGoToPreviousPage() =>
       // If it is the first subpage, 'previous subpage button' can not be active.
