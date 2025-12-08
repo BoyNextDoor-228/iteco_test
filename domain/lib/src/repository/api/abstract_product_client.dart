@@ -5,7 +5,7 @@ import '../../model/product/product.dart';
 abstract class AbstractProductClient {
   /// Get a list of [Product]s.
   /// [limit] is maximum amount of received elements.
-  Future<List<Product>> getProducts({required int limit});
+  Future<List<Product>> getProducts({int limit});
 
   /// Get a single [Product] by [productId].
   Future<Product> getProduct({required int productId});
