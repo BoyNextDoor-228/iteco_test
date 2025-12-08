@@ -25,28 +25,32 @@ class ProductListItem extends StatelessWidget {
     final descriptionStyle = textStyle.titleMedium;
     final priceStyle = textStyle.displaySmall;
 
+    final text = S.of(context);
+
     return Card(
       child: SizedBox(
         width: itemSize,
         height: itemSize * 1.1,
         child: Column(
           children: [
-            const Expanded(
-              child: Placeholder(),
-              // child: Image.network(
-              //   product.image,
-              //   loadingBuilder: (_, __, ___) => const Center(
-              //     child: CircularProgressIndicator(),
-              //   ),
-              //   errorBuilder: (_, __, ___) => const Center(
-              //     child: Column(
-              //       children: [
-              //         Icon(Icons.error_outline),
-              //         Text('Не получилось загрузить изображение'),
-              //       ],
-              //     ),
-              //   ),
-              // ),
+            Expanded(
+              child: SizedBox.expand(
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Image.network(
+                    product.image,
+                    fit: BoxFit.fitHeight,
+                    errorBuilder: (_, __, ___) => Center(
+                      child: Column(
+                        children: [
+                          const Icon(Icons.error_outline),
+                          Text(text.failed_to_load_image),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ),
             Expanded(
               child: Padding(

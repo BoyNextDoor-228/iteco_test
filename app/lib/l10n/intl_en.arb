@@ -17,5 +17,6 @@
   "product_list_retry_button_text": "Retry",
   "product_list_absence_text": "Products catalogue is empty, maybe, it will be filled later",
   "empty_product_list_reload_button_text": "Retry",
-  "feedbacksAmount": "Feedbacks count: {ratingCount}"
+  "feedbacksAmount": "Feedbacks count: {ratingCount}",
+  "failed_to_load_image": "Не получилось загрузить изображение"
 }

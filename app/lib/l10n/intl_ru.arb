@@ -17,5 +17,6 @@
   "product_list_retry_button_text": "Повторить попытку",
   "product_list_absence_text": "Каталог продуктов пуст, возможно, он будет пополнен позже",
   "empty_product_list_reload_button_text": "Повторить попытку",
-  "feedbacksAmount": "Кол-во отзывов: {ratingCount}"
+  "feedbacksAmount": "Кол-во отзывов: {ratingCount}",
+  "failed_to_load_image": "Не получилось загрузить изображение"
 }

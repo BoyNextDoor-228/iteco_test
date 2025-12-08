@@ -52,7 +52,6 @@ class _ItecoTestAppState extends State<ItecoTestApp> {
               darkTheme: darkTheme,
               localizationsDelegates: _appScope.localizationsDelegates,
               supportedLocales: _appScope.supportedLocales,
-              //locale: const Locale('en'),
             ),
           );
         },

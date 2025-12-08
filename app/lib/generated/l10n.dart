@@ -233,6 +233,16 @@ class S {
       args: [ratingCount],
     );
   }
+
+  /// `Не получилось загрузить изображение`
+  String get failed_to_load_image {
+    return Intl.message(
+      'Не получилось загрузить изображение',
+      name: 'failed_to_load_image',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

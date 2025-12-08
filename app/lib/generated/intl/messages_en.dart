@@ -26,6 +26,9 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "empty_product_list_reload_button_text":
             MessageLookupByLibrary.simpleMessage("Retry"),
+        "failed_to_load_image": MessageLookupByLibrary.simpleMessage(
+          "Не получилось загрузить изображение",
+        ),
         "feedbacksAmount": m0,
         "greeting_subpage_information": MessageLookupByLibrary.simpleMessage(
           "You\'re on onborading page, which is required by technical task!\nThis page will be shown once, on application launched for the very first time!\nHave a nice watching!",
