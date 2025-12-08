@@ -2,8 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
 import 'package:retrofit/retrofit.dart';
 
-//import 'product_client.dart';
-
 part 'product_rest_client.g.dart';
 
 @RestApi()

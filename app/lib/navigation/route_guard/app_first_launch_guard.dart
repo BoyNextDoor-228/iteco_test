@@ -3,7 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import '../app_router.dart';
 
 class AppFirstLaunchGuard extends AutoRouteGuard {
-  /// Prevents from navigation, if user is not presented.
+  /// Prevents from showing application, if it was launched for the first time.
   const AppFirstLaunchGuard({required this.isFirstLaunch});
 
   final bool isFirstLaunch;

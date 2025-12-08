@@ -4,6 +4,8 @@ import '../../text/informational_subpage_text.dart';
 import 'informational_subpage.dart';
 
 class LetsStartSubpage extends StatelessWidget {
+  /// Last subpage for a [PageView], which ends onboarding process by calling
+  /// [onButtonTap] callback.
   const LetsStartSubpage({
     required this.onButtonTap,
     super.key,

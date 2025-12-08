@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class InformationalSubpage extends StatelessWidget {
+  /// Subpage for [PageView], which displays some information.
   const InformationalSubpage({
     required this.icon,
     required this.titleText,

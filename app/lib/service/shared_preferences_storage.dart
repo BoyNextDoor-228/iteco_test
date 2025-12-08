@@ -1,7 +1,9 @@
-import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:developer';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 class SharedPreferencesAppDataStorage implements AbstractAppDataStorage {
+  /// [SharedPreferences] implementation of [AbstractAppDataStorage].
   SharedPreferencesAppDataStorage({
     required this.sharedPreferences,
   });
@@ -9,7 +11,7 @@ class SharedPreferencesAppDataStorage implements AbstractAppDataStorage {
   final SharedPreferences sharedPreferences;
 
   @override
-  Future<bool?> isFirstLaunch(String key) async {
+  Future<bool?> getIsFirstLaunch(String key) async {
     try {
       if (!sharedPreferences.containsKey(key)) {
         return true;
@@ -37,7 +39,7 @@ class SharedPreferencesAppDataStorage implements AbstractAppDataStorage {
 }
 
 abstract class AbstractAppDataStorage {
-  Future<bool?> isFirstLaunch(String key);
+  Future<bool?> getIsFirstLaunch(String key);
 
   Future<void> setIsFirstLaunch(String key, bool value);
 }

@@ -2,14 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../../product/widget/product_list_loading.dart';
 
-class ProductListDemoSubpage extends StatefulWidget {
+class ProductListDemoSubpage extends StatelessWidget {
+  /// Displays [PageView] subpage with demonstration of animated Products list.
   const ProductListDemoSubpage({super.key});
 
-  @override
-  State<ProductListDemoSubpage> createState() => _ProductListDemoSubpageState();
-}
-
-class _ProductListDemoSubpageState extends State<ProductListDemoSubpage> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;

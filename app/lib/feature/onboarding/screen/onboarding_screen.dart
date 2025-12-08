@@ -24,6 +24,7 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
+  /// Subpages of Onboarding [PageView]
   late final List<Widget> _subpages;
 
   final _pageViewController = PageController();
@@ -33,11 +34,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final _pageTransitionDuration = Durations.long2;
   final _pageTransitionCurve = Curves.fastLinearToSlowEaseIn;
 
+  /// Makes [_pageViewController] go to the next subpage.
   Future<void> _goToNextPage() async => _pageViewController.nextPage(
         duration: _pageTransitionDuration,
         curve: _pageTransitionCurve,
       );
 
+  /// Makes [_pageViewController] go to the previous subpage.
   Future<void> _goToPreviousPage() async => _pageViewController.previousPage(
         duration: _pageTransitionDuration,
         curve: _pageTransitionCurve,

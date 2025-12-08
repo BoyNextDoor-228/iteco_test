@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ProductListItemLoading extends StatefulWidget {
-  /// Displays a single item in products list in loading state.
+  /// Displays a single item in products list with shimmer effect, which means
+  /// this item is now loading.
   ///
   /// [itemSize] is a size of item.
   const ProductListItemLoading({

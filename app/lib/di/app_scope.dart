@@ -34,7 +34,7 @@ class AppScope implements IAppScope {
     );
 
     var isFirstLaunch = await _appDataStorage
-        .isFirstLaunch(Environment.instance.appConfig.isFirstLaunchKey);
+        .getIsFirstLaunch(Environment.instance.appConfig.isFirstLaunchKey);
     if (isFirstLaunch == null || isFirstLaunch) {
       await _appDataStorage.setIsFirstLaunch(
         Environment.instance.appConfig.isFirstLaunchKey,
