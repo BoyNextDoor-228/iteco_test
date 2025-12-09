@@ -49,6 +49,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       });
 
   @override
+  void dispose() {
+    _pageViewController.dispose();
+    super.dispose();
+  }
+
+  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
 
